@@ -1,0 +1,20 @@
+[
+    {
+        "id": 0,
+        "name": "bentley",
+        "price": "\u20ac100",
+        "image": "img/bentley-model-car.png"
+    },
+    {
+        "id": 1,
+        "name": "mercedes",
+        "price": "\u20ac89",
+        "image": "img/mercedes-model-car.png"
+    },
+    {
+        "id": 2,
+        "name": "mercedes",
+        "price": "\u20ac120",
+        "image": "img/bugatti-model-car.png"
+    }
+]
