@@ -1,26 +1,39 @@
-const slide = document.querySelectorAll(".slide img")
+const slides = document.querySelectorAll(".slides img")
 let slideNum = 0
-const prices = ["Price: $300","Price: $500","Price: $450"];
+const oldPrices = [100, 89, 120]
+const prices = [79.99, 67, 99.99]
+const models = ["Bentley Continental GT", "Mercedes-AMG C 63", "Bugatti Chiron Super Sport"]
 const priceText = document.getElementById("price-text");
+const oldPriceText = document.getElementById("old-price-text")
+const discountText = document.getElementById("discount")
+const carModel = document.getElementById("model")
+
 document.addEventListener("DOMContentLoaded", ()=>{
-    if(slide.length>0){
-        slide[slideNum].classList.add("sliderStyle")
+    if(slides.length>0){
+        slides[slideNum].classList.add("sliderStyle")
         setInterval(next, 5000)
 }
 })
+const calculateDiscount = (oldPrice, newPrice)=>{
+    const discount = Math.floor(((oldPrice - newPrice)/oldPrice) *100)
+    discountText.innerText = `${discount}% off`
+}
 
 const slideShower= (index)=>{
-    if(index >= slide.length){
+    if(index >= slides.length){
         slideNum = 0
     }
     else if(index < 0){
-        slideNum = slide.length - 1
+        slideNum = slides.length - 1
     }
-    slide.forEach(slides=>{
-        slides.classList.remove("sliderStyle")
+    slides.forEach(slide=>{
+        slide.classList.remove("sliderStyle")
     })
-    slide[slideNum].classList.add("sliderStyle")
-    priceText.textContent = prices[slideNum];
+    slides[slideNum].classList.add("sliderStyle")
+    calculateDiscount(oldPrices[slideNum], prices[slideNum])
+    oldPriceText.innerText = `Was: €${oldPrices[slideNum].toFixed(2)}`
+    priceText.innerText = `Now: €${prices[slideNum].toFixed(2)}`;
+    carModel.innerText = models[slideNum]
 }
 
 const next = ()=>{
